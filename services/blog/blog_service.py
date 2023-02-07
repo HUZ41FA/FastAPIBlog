@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from blog.models import Blog
+from models.blog import Blog
 from datetime import datetime
 
 class BlogService:

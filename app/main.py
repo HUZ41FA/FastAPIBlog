@@ -1,10 +1,12 @@
 from fastapi import FastAPI, Depends, status, Response, HTTPException
-from . import models, schemas
-from .database import SessionLocal, engine
+import models.blog as models
+from services.database.database_service import SessionLocal, engine
 from sqlalchemy.orm import Session
 from services.blog.blog_service import BlogService 
+from schema.blog import Blog
 
 models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
 def get_db():
@@ -16,7 +18,7 @@ def get_db():
 
 
 @app.post('/blog', status_code=status.HTTP_201_CREATED)
-async def create(blog : schemas.Blog, db : Session = Depends(get_db)):
+async def create(blog : Blog, db : Session = Depends(get_db)):
 
     _BlogService = BlogService(db)
 
@@ -58,7 +60,7 @@ async def delete_blog_by_id(id : int, db: Session = Depends(get_all)):
     return {"message" : "Blog updated successfully"}
     
 @app.patch("/blog/{id}", status_code=status.HTTP_200_OK)
-async def update_blog_by_id(id : int, requestBlog: schemas.Blog, response : Response, db : Session = Depends(get_all)):
+async def update_blog_by_id(id : int, requestBlog: Blog, response : Response, db : Session = Depends(get_all)):
 
     blog = db.query(models.Blog).filter(models.Blog.id == id)
     

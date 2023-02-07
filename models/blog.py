@@ -1,5 +1,5 @@
 from sqlalchemy import String, Column, Integer, DateTime
-from .database import Base
+from services.database.database_service import Base
 
 
 class Blog(Base):
