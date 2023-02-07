@@ -34,3 +34,5 @@ def create_blog(blog : Blog):
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="127.0.0.1", port=5000)
 #! The port will not change when you run the application you have to run the main.py file (python main.py)
+
+
