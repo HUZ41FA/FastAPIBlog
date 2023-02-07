@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, status, Response, HTTPException
 from . import models, schemas
 from .database import SessionLocal, engine
 from sqlalchemy.orm import Session
+from services.blog.blog_service import BlogService 
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -16,9 +17,13 @@ def get_db():
 
 @app.post('/blog', status_code=status.HTTP_201_CREATED)
 async def create(blog : schemas.Blog, db : Session = Depends(get_db)):
+
+    _BlogService = BlogService(db)
+
     new_blog : models.Blog = models.Blog(title=blog.title, body=blog.body)
 
-    db.add(new_blog)
+    _BlogService.create_blog(new_blog)
+    
     db.commit()
     db.refresh(new_blog)
 
