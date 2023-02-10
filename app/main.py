@@ -96,7 +96,7 @@ async def create_user(user : User, db : Session = Depends(get_db)):
     return new_user
 
 
-@app.get("/user/{id}", status_code=status.HTTP_200_OK, response_model=ShowUser, tags=['User '])
+@app.get("/user/{id}", status_code=status.HTTP_200_OK, response_model=ShowUser, tags=['User'])
 async def get_user(id: int, db : Session = Depends(get_db)):
     user = db.query(models.User).filter(models.User.id == id).first()
 
