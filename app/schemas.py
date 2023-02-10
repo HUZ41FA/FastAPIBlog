@@ -11,6 +11,7 @@ class User(BaseModel):
 class BlogBase(BaseModel):
     title: str
     body : str
+    user_id : int
     
 class Blog(BlogBase):
     class Config:
