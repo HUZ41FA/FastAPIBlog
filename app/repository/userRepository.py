@@ -8,3 +8,10 @@ from datetime import datetime
 from ..hash import Hash
 
 
+def get_by_id(id : int, db : Session) -> List[models.User]:
+    return db.query(models.User).filter(models.User.id == id).first()
+
+
+def create_user(model : models.User, db : Session):
+    db.add(model)
+    return True
