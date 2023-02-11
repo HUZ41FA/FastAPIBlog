@@ -1,12 +1,14 @@
 from typing import List
-from fastapi import FastAPI, Depends, status, Response, HTTPException
+from fastapi import FastAPI
 from . import models
-from .database import SessionLocal, engine
+from .database import  engine
 from sqlalchemy.orm import Session
 from .schemas import Blog, ShowBlog, ShowUser, User
 from datetime import datetime
 from .hash import Hash
 from .routers import blogRouter, userRouter, authRouter
+
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(

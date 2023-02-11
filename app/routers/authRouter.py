@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, Depends, HTTPException
+from fastapi import APIRouter, status, Depends, HTTPException, UploadFile
 from ..schemas import Login
 from ..database import get_db
 from sqlalchemy.orm import Session
@@ -18,7 +18,8 @@ def login(credentials : Login, db : Session = Depends(get_db)):
 
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password")
-    if not Hash.verify(credentials.password, user.password):
-        return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password")
+    # if not Hash.verify(credentials.password, user.password):
+    #     return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password")
     
+    #! Generate a JWT and return
     return user

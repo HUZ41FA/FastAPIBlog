@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os 
 
-SQLALCHEMY_DATABASE_URL = ""
+SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:NewPassword@127.0.0.1:3306/blog"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 # mysql+mysqlconnector://<user>:<password>@<host>[:<port>]/<dbname>
 
