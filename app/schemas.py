@@ -38,3 +38,18 @@ class ShowBlog(BaseModel):
 class Login(BaseModel):
     username : str
     password : str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: str | None = None
+
+class LoginUser(BaseModel):
+    email : str
+    username : str
+    access_token : str
+    token_type : str
